@@ -14,7 +14,6 @@ defmodule TabPlayerTest do
     assert TabPlayer.parse(tab) == expected
   end
 
-  @tag :pending
   test "Ode to joy, part 2" do
     tab = """
           e|-------------------------------|
@@ -26,5 +25,18 @@ defmodule TabPlayerTest do
           """
     expected = "B5 B5 B6 B8 B8 B6 B5 B3 B1 B1 B3 B5 B3 B1 B1"
     assert TabPlayer.parse(tab) == expected
+  end
+
+  test "Romanza" do
+    tab = """
+          e|-7-----7-----7-----7-----5-----3-----3-----2-----0-----0-----|
+          B|---0-----0-----0-----0-----0-----0-----0-----0-----0-----0---|
+          G|-----0-----0-----0-----0-----0-----0-----0-----0-----0-----0-|
+          D|-------------------------------------------------------------|
+          A|-------------------------------------------------------------|
+          E|-------------------------------------------------------------|
+          """
+    expected = "e7 B0 G0 e7 B0 G0 e7 B0 G0 e7 B0 G0 e5 B0 G0 e3 B0 G0 e3 B0 G0 e2 B0 G0 e0 B0 G0 e0 B0 G0"
+    assert TabPlayer.parse(tab) == expected    
   end
 end
