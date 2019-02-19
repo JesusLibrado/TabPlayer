@@ -27,7 +27,7 @@ defmodule TabPlayerTest do
     expected = "B5 B5 B6 B8 B8 B6 B5 B3 B1 B1 B3 B5 B3 B1 B1"
     assert TabPlayer.parse(tab) == expected
   end
-
+  
   @tag :pending
   test "Romanza" do
     tab = """
