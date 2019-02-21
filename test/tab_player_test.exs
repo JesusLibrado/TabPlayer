@@ -14,7 +14,6 @@ defmodule TabPlayerTest do
     assert TabPlayer.parse(tab) == expected
   end
 
-  @tag :pending
   test "Ode to joy, part 2" do
     tab = """
           e|-------------------------------|
