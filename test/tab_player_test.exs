@@ -40,7 +40,6 @@ defmodule TabPlayerTest do
     assert TabPlayer.parse(tab) == expected
   end
 
-  @tag :pending
   test "Stairway to Heaven (silences and divisions)" do
     tab = """
           e|-------5-7-----7-|-8-----8-2-----2-|-0---------0-----|-----------------|
