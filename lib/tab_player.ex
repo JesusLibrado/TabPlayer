@@ -1,11 +1,14 @@
 defmodule TabPlayer do
   def parse(tab) do
-    newTab = tab 
+    tab 
       |> String.split("\n")
-      |> Enum.map(fn string -> TabPlayer.deleteFrets(string) end)
-      |> Enum.filter(fn string -> TabPlayer.areAllSilent(string) end)
+      |> Enum.map(fn string -> TabPlayer.getFormattedList(string) end)
       |> List.flatten()
+      |> List.keysort(1)
+      |> Enum.filter(fn {noteAtFret, _position} -> noteAtFret != "-" end)
+      |> Enum.map(fn {noteAtFret, _position} -> noteAtFret end)
       |> Enum.join(" ")
+      ## |> List.flatten()
 
   end
 
@@ -17,7 +20,7 @@ defmodule TabPlayer do
     if note == "-", do: note, else: stringName <> note
   end
 
-  def deleteFrets(string) do
+  def getFormattedList(string) do
     stringName = String.at(string, 0)
     string 
       |> String.slice(2, String.length(string))
@@ -25,14 +28,8 @@ defmodule TabPlayer do
       |> Enum.drop_every(2)
       |> List.delete("|")
       |> Enum.map(fn noteAtFret -> concatenatedNote(noteAtFret, stringName) end)
+      |> Enum.with_index()
+      |> Enum.to_list()
       
-  end
-
-  def addNote(notes, stringName, fret) do
-    if Regex.match?(~r/\d/, fret) do
-      notes ++ ["#{stringName}#{fret}"]
-    else
-      notes
-    end
   end
 end
